@@ -4,6 +4,9 @@
 <html lang="en-US">
 
 <head>
+	{% load bootstrap5 %}
+	{% bootstrap_css %}
+	{% bootstrap_javascript %}
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8062,7 +8065,7 @@
                   <div class="ast-builder-layout-element ast-flex site-header-focus-item" data-section="title_tagline">
                     <div class="site-branding ast-site-identity" itemtype="https://schema.org/Organization"
                       itemscope="itemscope">
-                      <span class="site-logo-img"><a href="https://websitedemos.net/be-bold-beauty-store-04/"
+                      <span class="site-logo-img"><a href="{% url 'home' %}"
                           class="custom-logo-link" rel="home" aria-current="page"><img width="104" height="49"
                             src="{% static "index/logo-regular.png" %}" class="custom-logo" alt="Be Bold" decoding="async"
                             srcset="
@@ -8089,34 +8092,40 @@
                               class="main-header-menu ast-menu-shadow ast-nav-menu ast-flex submenu-with-border ast-menu-hover-style-overline stack-on-mobile">
                               <li id="menu-item-42"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42">
-                                <a href="https://websitedemos.net/be-bold-beauty-store-04/shop/" class="menu-link">Shop
+                                <a href="{% url 'store' %}" class="menu-link">Shop
                                   All</a>
                               </li>
                               <li id="menu-item-44"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-44">
-                                <a href="https://websitedemos.net/be-bold-beauty-store-04/product-category/makeup/"
+                                <a href="{% url 'store' %}"
                                   class="menu-link">Makeup</a>
                               </li>
                               <li id="menu-item-45"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-45">
-                                <a href="https://websitedemos.net/be-bold-beauty-store-04/product-category/skin-care/"
+                                <a href="{% url 'store' %}"
                                   class="menu-link">Skin Care</a>
                               </li>
                               <li id="menu-item-43"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-43">
-                                <a href="https://websitedemos.net/be-bold-beauty-store-04/product-category/hair-care/"
+                                <a href="{% url 'store' %}"
                                   class="menu-link">Hair Care</a>
                               </li>
                               <li id="menu-item-40"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-40">
-                                <a href="https://websitedemos.net/be-bold-beauty-store-04/about/"
+                                <a href="{% url 'home' %}"
                                   class="menu-link">About</a>
                               </li>
                               <li id="menu-item-39"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-39">
-                                <a href="https://websitedemos.net/be-bold-beauty-store-04/contact/"
+                                <a href="{% url 'contact' %}"
                                   class="menu-link">Contact</a>
                               </li>
+                              {% if user.is_authenticated %}
+                              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-39">
+                                <a href="{% url 'log_out' %}"
+                                  class="menu-link">Log Out</a>
+                              </li>
+                              {% endif %}
                             </ul>
                           </div>
                         </nav>
@@ -8133,7 +8142,7 @@
                     <div class="ast-header-account-wrap">
                       <a class="ast-header-account-link ast-header-account-type-icon ast-account-action-link"
                         aria-label="Account icon link"
-                        href="https://websitedemos.net/be-bold-beauty-store-02/my-account/edit-account/" target="_self">
+                        href="{% url 'profile' %}" target="_self">
                         <span class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg version="1.1"
                             class="account-icon" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120"
@@ -8147,55 +8156,40 @@
                     </div>
                   </div>
                   <div class="ast-builder-layout-element site-header-focus-item ast-header-woo-cart"
-                    data-section="section-header-woo-cart">
-                    <div id="ast-site-header-cart"
-                      class="ast-site-header-cart ast-menu-cart-with-border ast-desktop-cart-flyout ast-menu-cart-outline">
-                      <div class="ast-site-header-cart-li">
-                        <a href="https://websitedemos.net/be-bold-beauty-store-04/cart/"
-                          class="cart-container ast-cart-desktop-position- ast-cart-mobile-position- ast-cart-tablet-position-"
-                          aria-label="View Shopping Cart, empty">
-                          <div
-                            class="ast-addon-cart-wrap ast-desktop-cart-position- ast-cart-mobile-position- ast-cart-tablet-position-">
-                            <span class="ast-woo-header-cart-info-wrap">
-                              <span class="ast-woo-header-cart-total"><span
-                                  class="woocommerce-Price-amount amount"><bdi><span
-                                      class="woocommerce-Price-currencySymbol">$</span>0.00</bdi></span></span>
-                            </span>
-                            <i class="astra-icon ast-icon-shopping-bag" data-cart-total="0"><span
-                                class="ast-icon icon-bag"><svg xmlns="http://www.w3.org/2000/svg"
-                                  xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="ast-bag-icon-svg" x="0px"
-                                  y="0px" width="100" height="100" viewBox="826 826 140 140"
-                                  enable-background="new 826 826 140 140" xml:space="preserve">
-                                  <path
-                                    d="M960.758,934.509l2.632,23.541c0.15,1.403-0.25,2.657-1.203,3.761c-0.953,1.053-2.156,1.579-3.61,1.579H833.424  c-1.454,0-2.657-0.526-3.61-1.579c-0.952-1.104-1.354-2.357-1.203-3.761l2.632-23.541H960.758z M953.763,871.405l6.468,58.29H831.77  l6.468-58.29c0.15-1.203,0.677-2.218,1.58-3.045c0.903-0.827,1.981-1.241,3.234-1.241h19.254v9.627c0,2.658,0.94,4.927,2.82,6.807  s4.149,2.82,6.807,2.82c2.658,0,4.926-0.94,6.807-2.82s2.821-4.149,2.821-6.807v-9.627h28.882v9.627  c0,2.658,0.939,4.927,2.819,6.807c1.881,1.88,4.149,2.82,6.807,2.82s4.927-0.94,6.808-2.82c1.879-1.88,2.82-4.149,2.82-6.807v-9.627  h19.253c1.255,0,2.332,0.414,3.235,1.241C953.086,869.187,953.612,870.202,953.763,871.405z M924.881,857.492v19.254  c0,1.304-0.476,2.432-1.429,3.385s-2.08,1.429-3.385,1.429c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.43-2.081-1.43-3.385  v-19.254c0-5.315-1.881-9.853-5.641-13.613c-3.76-3.761-8.298-5.641-13.613-5.641s-9.853,1.88-13.613,5.641  c-3.761,3.76-5.641,8.298-5.641,13.613v19.254c0,1.304-0.476,2.432-1.429,3.385c-0.953,0.953-2.081,1.429-3.385,1.429  c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.429-2.081-1.429-3.385v-19.254c0-7.973,2.821-14.779,8.461-20.42  c5.641-5.641,12.448-8.461,20.42-8.461c7.973,0,14.779,2.82,20.42,8.461C922.062,842.712,924.881,849.519,924.881,857.492z">
-                                  </path>
-                                </svg></span></i>
-                          </div>
-                        </a>
-                      </div>
-                      <div class="ast-site-header-cart-data">
-                        <div class="widget woocommerce widget_shopping_cart">
-                          <div class="widget_shopping_cart_content">
-                            <p class="woocommerce-mini-cart__empty-message">
-                              No products in the cart.
-                            </p>
+										data-section="section-header-woo-cart">
+										<div id="ast-site-header-cart"
+											class="ast-site-header-cart ast-menu-cart-with-border  ast-menu-cart-outline">
+											<div class="ast-site-header-cart-li ">
+												<a href="{% url 'cart' %}"
+													class="cart-container ast-cart-desktop-position- ast-cart-mobile-position- ast-cart-tablet-position-"
+													aria-label="View Shopping Cart, empty">
 
-                            <div class="ast-mini-cart-empty">
-                              <div class="ast-mini-cart-message">
-                                <p class="woocommerce-mini-cart__empty-message">
-                                  No products in the cart.
-                                </p>
-                              </div>
-                              <div class="woocommerce-mini-cart__buttons">
-                                <a href="https://websitedemos.net/be-bold-beauty-store-04/shop/"
-                                  class="button wc-forward ast-continue-shopping">Continue Shopping</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+													<div
+														class="ast-addon-cart-wrap ast-desktop-cart-position- ast-cart-mobile-position- ast-cart-tablet-position- ">
+														<span class="ast-woo-header-cart-info-wrap">
+															<span class="ast-woo-header-cart-total"><span
+																	class="woocommerce-Price-amount amount"><bdi><span
+																			class="woocommerce-Price-currencySymbol">$</span>{{total|floatformat:"2g"}}</bdi></span></span>
+														</span>
+														<i class="astra-icon ast-icon-shopping-bag "
+															data-cart-total="{{len}}"><span class="ast-icon icon-bag"><svg
+																	xmlns="http://www.w3.org/2000/svg"
+																	xmlns:xlink="http://www.w3.org/1999/xlink"
+																	version="1.1" id="ast-bag-icon-svg" x="0px" y="0px"
+																	width="100" height="100" viewBox="826 826 140 140"
+																	enable-background="new 826 826 140 140"
+																	xml:space="preserve">
+																	<path
+																		d="M960.758,934.509l2.632,23.541c0.15,1.403-0.25,2.657-1.203,3.761c-0.953,1.053-2.156,1.579-3.61,1.579H833.424  c-1.454,0-2.657-0.526-3.61-1.579c-0.952-1.104-1.354-2.357-1.203-3.761l2.632-23.541H960.758z M953.763,871.405l6.468,58.29H831.77  l6.468-58.29c0.15-1.203,0.677-2.218,1.58-3.045c0.903-0.827,1.981-1.241,3.234-1.241h19.254v9.627c0,2.658,0.94,4.927,2.82,6.807  s4.149,2.82,6.807,2.82c2.658,0,4.926-0.94,6.807-2.82s2.821-4.149,2.821-6.807v-9.627h28.882v9.627  c0,2.658,0.939,4.927,2.819,6.807c1.881,1.88,4.149,2.82,6.807,2.82s4.927-0.94,6.808-2.82c1.879-1.88,2.82-4.149,2.82-6.807v-9.627  h19.253c1.255,0,2.332,0.414,3.235,1.241C953.086,869.187,953.612,870.202,953.763,871.405z M924.881,857.492v19.254  c0,1.304-0.476,2.432-1.429,3.385s-2.08,1.429-3.385,1.429c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.43-2.081-1.43-3.385  v-19.254c0-5.315-1.881-9.853-5.641-13.613c-3.76-3.761-8.298-5.641-13.613-5.641s-9.853,1.88-13.613,5.641  c-3.761,3.76-5.641,8.298-5.641,13.613v19.254c0,1.304-0.476,2.432-1.429,3.385c-0.953,0.953-2.081,1.429-3.385,1.429  c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.429-2.081-1.429-3.385v-19.254c0-7.973,2.821-14.779,8.461-20.42  c5.641-5.641,12.448-8.461,20.42-8.461c7.973,0,14.779,2.82,20.42,8.461C922.062,842.712,924.881,849.519,924.881,857.492z">
+																	</path>
+																</svg></span></i>
+													</div>
+												</a>
+
+											</div>
+											
+										</div>
+									</div>
                 </div>
               </div>
             </div>
@@ -8213,7 +8207,7 @@
                 <div class="ast-builder-layout-element ast-flex site-header-focus-item" data-section="title_tagline">
                   <div class="site-branding ast-site-identity" itemtype="https://schema.org/Organization"
                     itemscope="itemscope">
-                    <span class="site-logo-img"><a href="https://websitedemos.net/be-bold-beauty-store-04/"
+                    <span class="site-logo-img"><a href="{% url 'home' %}"
                         class="custom-logo-link" rel="home" aria-current="page"><img width="104" height="49"
                           src="{% static "index/logo-regular.png" %}" class="custom-logo" alt="Be Bold" decoding="async"
                           srcset="
@@ -8224,6 +8218,63 @@
                 </div>
               </div>
               <div class="site-header-primary-section-right site-header-section ast-flex ast-grid-right-section">
+                <div class="site-header-primary-section-right site-header-section ast-flex ast-grid-right-section">
+                  <div
+                    class="site-header-primary-section-right-center site-header-section ast-flex ast-grid-right-center-section">
+                  </div>
+                  <div class="ast-builder-layout-element site-header-focus-item ast-header-account"
+                    data-section="section-header-account">
+                    <div class="ast-header-account-wrap">
+                      <a class="ast-header-account-link ast-header-account-type-icon ast-account-action-link"
+                        aria-label="Account icon link"
+                        href="{% url 'profile' %}" target="_self">
+                        <span class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg version="1.1"
+                            class="account-icon" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120"
+                            enable-background="new 0 0 120 120" xml:space="preserve">
+                            <path
+                              d="M84.6,62c-14.1,12.3-35.1,12.3-49.2,0C16.1,71.4,3.8,91,3.8,112.5c0,2.1,1.7,3.8,3.8,3.8h105c2.1,0,3.8-1.7,3.8-3.8 C116.2,91,103.9,71.4,84.6,62z">
+                            </path>
+                            <circle cx="60" cy="33.8" r="30"></circle>
+                          </svg></span> </a>
+                    </div>
+                  </div>
+                  <div class="ast-builder-layout-element site-header-focus-item "
+										data-section="section-header-woo-cart">
+										<div id="ast-site-header-cart"
+											class="ast-site-header-cart ast-menu-cart-with-border  ast-menu-cart-outline">
+											<div class="ast-site-header-cart-li ">
+												<a href="{% url 'cart' %}"
+													class="cart-container ast-cart-desktop-position- ast-cart-mobile-position- ast-cart-tablet-position-"
+													aria-label="View Shopping Cart, empty">
+
+													<div
+														class="ast-addon-cart-wrap ast-desktop-cart-position- ast-cart-mobile-position- ast-cart-tablet-position- ">
+														<span class="ast-woo-header-cart-info-wrap">
+															<span class="ast-woo-header-cart-total"><span
+																	class="woocommerce-Price-amount amount"><bdi><span
+																			class="woocommerce-Price-currencySymbol">$</span>{{total|floatformat:"2g"}}</bdi></span></span>
+														</span>
+														<i class="astra-icon ast-icon-shopping-bag "
+															data-cart-total="{{len}}"><span class="ast-icon icon-bag"><svg
+																	xmlns="http://www.w3.org/2000/svg"
+																	xmlns:xlink="http://www.w3.org/1999/xlink"
+																	version="1.1" id="ast-bag-icon-svg" x="0px" y="0px"
+																	width="100" height="100" viewBox="826 826 140 140"
+																	enable-background="new 826 826 140 140"
+																	xml:space="preserve">
+																	<path
+																		d="M960.758,934.509l2.632,23.541c0.15,1.403-0.25,2.657-1.203,3.761c-0.953,1.053-2.156,1.579-3.61,1.579H833.424  c-1.454,0-2.657-0.526-3.61-1.579c-0.952-1.104-1.354-2.357-1.203-3.761l2.632-23.541H960.758z M953.763,871.405l6.468,58.29H831.77  l6.468-58.29c0.15-1.203,0.677-2.218,1.58-3.045c0.903-0.827,1.981-1.241,3.234-1.241h19.254v9.627c0,2.658,0.94,4.927,2.82,6.807  s4.149,2.82,6.807,2.82c2.658,0,4.926-0.94,6.807-2.82s2.821-4.149,2.821-6.807v-9.627h28.882v9.627  c0,2.658,0.939,4.927,2.819,6.807c1.881,1.88,4.149,2.82,6.807,2.82s4.927-0.94,6.808-2.82c1.879-1.88,2.82-4.149,2.82-6.807v-9.627  h19.253c1.255,0,2.332,0.414,3.235,1.241C953.086,869.187,953.612,870.202,953.763,871.405z M924.881,857.492v19.254  c0,1.304-0.476,2.432-1.429,3.385s-2.08,1.429-3.385,1.429c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.43-2.081-1.43-3.385  v-19.254c0-5.315-1.881-9.853-5.641-13.613c-3.76-3.761-8.298-5.641-13.613-5.641s-9.853,1.88-13.613,5.641  c-3.761,3.76-5.641,8.298-5.641,13.613v19.254c0,1.304-0.476,2.432-1.429,3.385c-0.953,0.953-2.081,1.429-3.385,1.429  c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.429-2.081-1.429-3.385v-19.254c0-7.973,2.821-14.779,8.461-20.42  c5.641-5.641,12.448-8.461,20.42-8.461c7.973,0,14.779,2.82,20.42,8.461C922.062,842.712,924.881,849.519,924.881,857.492z">
+																	</path>
+																</svg></span></i>
+													</div>
+												</a>
+
+											</div>
+											
+										</div>
+									</div>
+                </div>
                 <div class="ast-builder-layout-element ast-flex site-header-focus-item"
                   data-section="section-header-mobile-trigger">
                   <div class="ast-button-wrap">
@@ -8264,28 +8315,42 @@
                   <div class="main-navigation">
                     <ul id="ast-hf-mobile-menu"
                       class="main-header-menu ast-nav-menu ast-flex submenu-with-border astra-menu-animation-fade stack-on-mobile">
-                      <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42">
-                        <a href="https://websitedemos.net/be-bold-beauty-store-04/shop/" class="menu-link">Shop All</a>
+                      {% if user.is_authenticated == False %}
+                      <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-39">
+                        <a href="{% url 'sign_in' %}"
+                          class="menu-link">Log In</a>
+                      </li>
+                      {% endif %}
+                      <li
+                        class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-42">
+                        <a href="{% url 'store' %}" class="menu-link">Shop All</a>
                       </li>
                       <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-44">
-                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product-category/makeup/"
+                        <a href="{% url 'store' %}"
                           class="menu-link">Makeup</a>
                       </li>
                       <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-45">
-                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product-category/skin-care/"
+                        <a href="{% url 'store' %}"
                           class="menu-link">Skin Care</a>
                       </li>
-                      <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-43">
-                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product-category/hair-care/"
+                      <li
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat current-product-ancestor current-menu-parent current-product-parent menu-item-43">
+                        <a href="{% url 'store' %}"
                           class="menu-link">Hair Care</a>
                       </li>
                       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-40">
-                        <a href="https://websitedemos.net/be-bold-beauty-store-04/about/" class="menu-link">About</a>
+                        <a href="{% url 'home' %}" class="menu-link">About</a>
                       </li>
                       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-39">
-                        <a href="https://websitedemos.net/be-bold-beauty-store-04/contact/"
+                        <a href="{% url 'contact' %}"
                           class="menu-link">Contact</a>
                       </li>
+                      {% if user.is_authenticated %}
+                      <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-39">
+                        <a href="{% url 'log_out' %}"
+                          class="menu-link">Log Out</a>
+                      </li>
+                      {% endif %}
                     </ul>
                   </div>
                 </nav>
@@ -8335,8 +8400,8 @@
                             data-id="ef3705a" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
                               <h4 class="elementor-heading-title elementor-size-default">
-                                This new collection brings with it the most
-                                exciting lorem ipsum dolor sit amet.
+                                This new collection brings with it all the
+                                cosmetics you will even need.
                               </h4>
                             </div>
                           </div>
@@ -8346,7 +8411,7 @@
                             <div class="elementor-widget-container">
                               <div class="elementor-button-wrapper">
                                 <a class="elementor-button elementor-button-link elementor-size-sm"
-                                  href="https://websitedemos.net/be-bold-beauty-store-04/#">
+                                  href="{% url 'store' %}">
                                   <span class="elementor-button-content-wrapper">
                                     <span class="elementor-button-text">Shop now</span>
                                   </span>
@@ -8660,242 +8725,39 @@
                               <div class="elementor-shortcode">
                                 <div class="woocommerce columns-4">
                                   <ul class="products columns-4">
+
+                                    {% for item in trending %}
                                     <li
-                                      class="ast-article-single desktop-align-left tablet-align-left mobile-align-left product type-product post-101 status-publish first instock product_cat-hair-care has-post-thumbnail sale shipping-taxable purchasable product-type-simple">
+                                      class="ast-grid-common-col ast-full-width ast-article-post desktop-align-left tablet-align-left mobile-align-left product type-product post-101 status-publish first instock product_cat-hair-care has-post-thumbnail sale shipping-taxable purchasable product-type-simple">
                                       <div class="astra-shop-thumbnail-wrap">
-                                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product/product-name-1/"
+                                        <a href= {% url 'item' item.id %} 
                                           class="woocommerce-LoopProduct-link woocommerce-loop-product__link"><img
-                                            fetchpriority="high" decoding="async" width="300" height="366"
-                                            src="{% static "index/product-04-a-300x366.jpg" %}"
-                                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""
-                                            srcset="
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2023/11/product-04-a-300x366.jpg  300w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2023/11/product-04-a-246x300.jpg  246w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2023/11/product-04-a-840x1024.jpg 840w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2023/11/product-04-a-768x936.jpg  768w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2023/11/product-04-a-600x731.jpg  600w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2023/11/product-04-a-400x488.jpg  400w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2023/11/product-04-a.jpg          960w
-                                              " sizes="(max-width: 300px) 100vw, 300px" /></a><span
-                                          class="ast-on-card-button ast-onsale-card"
-                                          data-notification="default">Sale!</span><a
-                                          href="https://websitedemos.net/be-bold-beauty-store-04/?add-to-cart=101"
-                                          data-quantity="1"
-                                          class="ast-on-card-button ast-select-options-trigger product_type_simple add_to_cart_button ajax_add_to_cart"
-                                          data-product_id="101" data-product_sku=""
-                                          aria-label="Add to cart: “Product Name 1”" rel="nofollow">
-                                          <span class="ast-card-action-tooltip">
-                                            Add to cart
-                                          </span>
-                                          <span class="ahfb-svg-iconset">
-                                            <span class="ast-icon icon-bag"><svg xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                                                id="ast-bag-icon-svg" x="0px" y="0px" width="100" height="100"
-                                                viewBox="826 826 140 140" enable-background="new 826 826 140 140"
-                                                xml:space="preserve">
-                                                <path
-                                                  d="M960.758,934.509l2.632,23.541c0.15,1.403-0.25,2.657-1.203,3.761c-0.953,1.053-2.156,1.579-3.61,1.579H833.424  c-1.454,0-2.657-0.526-3.61-1.579c-0.952-1.104-1.354-2.357-1.203-3.761l2.632-23.541H960.758z M953.763,871.405l6.468,58.29H831.77  l6.468-58.29c0.15-1.203,0.677-2.218,1.58-3.045c0.903-0.827,1.981-1.241,3.234-1.241h19.254v9.627c0,2.658,0.94,4.927,2.82,6.807  s4.149,2.82,6.807,2.82c2.658,0,4.926-0.94,6.807-2.82s2.821-4.149,2.821-6.807v-9.627h28.882v9.627  c0,2.658,0.939,4.927,2.819,6.807c1.881,1.88,4.149,2.82,6.807,2.82s4.927-0.94,6.808-2.82c1.879-1.88,2.82-4.149,2.82-6.807v-9.627  h19.253c1.255,0,2.332,0.414,3.235,1.241C953.086,869.187,953.612,870.202,953.763,871.405z M924.881,857.492v19.254  c0,1.304-0.476,2.432-1.429,3.385s-2.08,1.429-3.385,1.429c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.43-2.081-1.43-3.385  v-19.254c0-5.315-1.881-9.853-5.641-13.613c-3.76-3.761-8.298-5.641-13.613-5.641s-9.853,1.88-13.613,5.641  c-3.761,3.76-5.641,8.298-5.641,13.613v19.254c0,1.304-0.476,2.432-1.429,3.385c-0.953,0.953-2.081,1.429-3.385,1.429  c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.429-2.081-1.429-3.385v-19.254c0-7.973,2.821-14.779,8.461-20.42  c5.641-5.641,12.448-8.461,20.42-8.461c7.973,0,14.779,2.82,20.42,8.461C922.062,842.712,924.881,849.519,924.881,857.492z">
-                                                </path>
-                                              </svg></span>
-                                          </span>
-                                        </a>
+                                            width="300" height="366" src="{{ item.image.url }}"
+                                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                                            alt="" decoding="async"
+                                            srcset="{{ item.image.url }}"
+                                            sizes="(max-width: 300px) 100vw, 300px"></a><span
+                                          class="ast-on-card-button ast-onsale-card" data-notification="default">{{ item.discounted }}% discount</span>
                                       </div>
                                       <div class="astra-shop-summary-wrap">
-                                        <div class="star-rating">
-                                          <span style="width: 0%">Rated
-                                            <strong class="rating">0</strong>
-                                            out of 5</span>
-                                        </div>
-                                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product/product-name-1/"
+                                        <a href="{% url 'item' item.id %}" class="btn-sm btn-primary ">Add to Cart</a>
+                                        <a href=""
                                           class="ast-loop-product__link">
-                                          <h2 class="woocommerce-loop-product__title">
-                                            Product Name 1
-                                          </h2>
+                                          <h2 class="woocommerce-loop-product__title">{{ item.title }}</h2>
                                         </a>
                                         <span class="price"><del aria-hidden="true"><span
                                               class="woocommerce-Price-amount amount"><bdi><span
-                                                  class="woocommerce-Price-currencySymbol">$</span>75.00</bdi></span></del>
+                                                  class="woocommerce-Price-currencySymbol"></span>
+                                                  {% if item.discount_price %}
+                                                  ${{ item.main_price|floatformat:"2g" }}
+                                                  {% endif %}
+                                                </bdi></span></del>
                                           <ins><span class="woocommerce-Price-amount amount"><bdi><span
-                                                  class="woocommerce-Price-currencySymbol">$</span>59.00</bdi></span></ins></span>
+                                                  class="woocommerce-Price-currencySymbol">$</span>{{ item.price|floatformat:"2g" }}</bdi></span></ins></span>
                                       </div>
                                     </li>
-                                    <li
-                                      class="ast-article-single desktop-align-left tablet-align-left mobile-align-left product type-product post-350 status-publish instock product_cat-hair-care product_cat-skin-care has-post-thumbnail sale shipping-taxable purchasable product-type-simple">
-                                      <div class="astra-shop-thumbnail-wrap">
-                                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product/product-name-9/"
-                                          class="woocommerce-LoopProduct-link woocommerce-loop-product__link"><img
-                                            decoding="async" width="300" height="366"
-                                            src="{% static "index/product-14-a-300x366.jpg" %}"
-                                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""
-                                            srcset="
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-14-a-300x366.jpg  300w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-14-a-246x300.jpg  246w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-14-a-840x1024.jpg 840w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-14-a-768x936.jpg  768w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-14-a-600x731.jpg  600w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-14-a-400x488.jpg  400w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-14-a.jpg          960w
-                                              " sizes="(max-width: 300px) 100vw, 300px" /></a><span
-                                          class="ast-on-card-button ast-onsale-card"
-                                          data-notification="default">Sale!</span><a
-                                          href="https://websitedemos.net/be-bold-beauty-store-04/?add-to-cart=350"
-                                          data-quantity="1"
-                                          class="ast-on-card-button ast-select-options-trigger product_type_simple add_to_cart_button ajax_add_to_cart"
-                                          data-product_id="350" data-product_sku=""
-                                          aria-label="Add to cart: “Product Name 10”" rel="nofollow">
-                                          <span class="ast-card-action-tooltip">
-                                            Add to cart
-                                          </span>
-                                          <span class="ahfb-svg-iconset">
-                                            <span class="ast-icon icon-bag"><svg xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                                                id="ast-bag-icon-svg" x="0px" y="0px" width="100" height="100"
-                                                viewBox="826 826 140 140" enable-background="new 826 826 140 140"
-                                                xml:space="preserve">
-                                                <path
-                                                  d="M960.758,934.509l2.632,23.541c0.15,1.403-0.25,2.657-1.203,3.761c-0.953,1.053-2.156,1.579-3.61,1.579H833.424  c-1.454,0-2.657-0.526-3.61-1.579c-0.952-1.104-1.354-2.357-1.203-3.761l2.632-23.541H960.758z M953.763,871.405l6.468,58.29H831.77  l6.468-58.29c0.15-1.203,0.677-2.218,1.58-3.045c0.903-0.827,1.981-1.241,3.234-1.241h19.254v9.627c0,2.658,0.94,4.927,2.82,6.807  s4.149,2.82,6.807,2.82c2.658,0,4.926-0.94,6.807-2.82s2.821-4.149,2.821-6.807v-9.627h28.882v9.627  c0,2.658,0.939,4.927,2.819,6.807c1.881,1.88,4.149,2.82,6.807,2.82s4.927-0.94,6.808-2.82c1.879-1.88,2.82-4.149,2.82-6.807v-9.627  h19.253c1.255,0,2.332,0.414,3.235,1.241C953.086,869.187,953.612,870.202,953.763,871.405z M924.881,857.492v19.254  c0,1.304-0.476,2.432-1.429,3.385s-2.08,1.429-3.385,1.429c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.43-2.081-1.43-3.385  v-19.254c0-5.315-1.881-9.853-5.641-13.613c-3.76-3.761-8.298-5.641-13.613-5.641s-9.853,1.88-13.613,5.641  c-3.761,3.76-5.641,8.298-5.641,13.613v19.254c0,1.304-0.476,2.432-1.429,3.385c-0.953,0.953-2.081,1.429-3.385,1.429  c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.429-2.081-1.429-3.385v-19.254c0-7.973,2.821-14.779,8.461-20.42  c5.641-5.641,12.448-8.461,20.42-8.461c7.973,0,14.779,2.82,20.42,8.461C922.062,842.712,924.881,849.519,924.881,857.492z">
-                                                </path>
-                                              </svg></span>
-                                          </span>
-                                        </a>
-                                      </div>
-                                      <div class="astra-shop-summary-wrap">
-                                        <div class="star-rating">
-                                          <span style="width: 0%">Rated
-                                            <strong class="rating">0</strong>
-                                            out of 5</span>
-                                        </div>
-                                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product/product-name-9/"
-                                          class="ast-loop-product__link">
-                                          <h2 class="woocommerce-loop-product__title">
-                                            Product Name 10
-                                          </h2>
-                                        </a>
-                                        <span class="price"><del aria-hidden="true"><span
-                                              class="woocommerce-Price-amount amount"><bdi><span
-                                                  class="woocommerce-Price-currencySymbol">$</span>75.00</bdi></span></del>
-                                          <ins><span class="woocommerce-Price-amount amount"><bdi><span
-                                                  class="woocommerce-Price-currencySymbol">$</span>59.00</bdi></span></ins></span>
-                                      </div>
-                                    </li>
-                                    <li
-                                      class="ast-article-single desktop-align-left tablet-align-left mobile-align-left product type-product post-351 status-publish instock product_cat-skin-care has-post-thumbnail sale shipping-taxable purchasable product-type-simple">
-                                      <div class="astra-shop-thumbnail-wrap">
-                                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product/product-name-10/"
-                                          class="woocommerce-LoopProduct-link woocommerce-loop-product__link"><img
-                                            decoding="async" width="300" height="366"
-                                            src="{% static "index/product-09-a-300x366.jpg" %}"
-                                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""
-                                            srcset="
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-09-a-300x366.jpg  300w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-09-a-246x300.jpg  246w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-09-a-840x1024.jpg 840w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-09-a-768x936.jpg  768w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-09-a-600x731.jpg  600w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-09-a-400x488.jpg  400w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-09-a.jpg          960w
-                                              " sizes="(max-width: 300px) 100vw, 300px" /></a><span
-                                          class="ast-on-card-button ast-onsale-card"
-                                          data-notification="default">Sale!</span><a
-                                          href="https://websitedemos.net/be-bold-beauty-store-04/?add-to-cart=351"
-                                          data-quantity="1"
-                                          class="ast-on-card-button ast-select-options-trigger product_type_simple add_to_cart_button ajax_add_to_cart"
-                                          data-product_id="351" data-product_sku=""
-                                          aria-label="Add to cart: “Product Name 11”" rel="nofollow">
-                                          <span class="ast-card-action-tooltip">
-                                            Add to cart
-                                          </span>
-                                          <span class="ahfb-svg-iconset">
-                                            <span class="ast-icon icon-bag"><svg xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                                                id="ast-bag-icon-svg" x="0px" y="0px" width="100" height="100"
-                                                viewBox="826 826 140 140" enable-background="new 826 826 140 140"
-                                                xml:space="preserve">
-                                                <path
-                                                  d="M960.758,934.509l2.632,23.541c0.15,1.403-0.25,2.657-1.203,3.761c-0.953,1.053-2.156,1.579-3.61,1.579H833.424  c-1.454,0-2.657-0.526-3.61-1.579c-0.952-1.104-1.354-2.357-1.203-3.761l2.632-23.541H960.758z M953.763,871.405l6.468,58.29H831.77  l6.468-58.29c0.15-1.203,0.677-2.218,1.58-3.045c0.903-0.827,1.981-1.241,3.234-1.241h19.254v9.627c0,2.658,0.94,4.927,2.82,6.807  s4.149,2.82,6.807,2.82c2.658,0,4.926-0.94,6.807-2.82s2.821-4.149,2.821-6.807v-9.627h28.882v9.627  c0,2.658,0.939,4.927,2.819,6.807c1.881,1.88,4.149,2.82,6.807,2.82s4.927-0.94,6.808-2.82c1.879-1.88,2.82-4.149,2.82-6.807v-9.627  h19.253c1.255,0,2.332,0.414,3.235,1.241C953.086,869.187,953.612,870.202,953.763,871.405z M924.881,857.492v19.254  c0,1.304-0.476,2.432-1.429,3.385s-2.08,1.429-3.385,1.429c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.43-2.081-1.43-3.385  v-19.254c0-5.315-1.881-9.853-5.641-13.613c-3.76-3.761-8.298-5.641-13.613-5.641s-9.853,1.88-13.613,5.641  c-3.761,3.76-5.641,8.298-5.641,13.613v19.254c0,1.304-0.476,2.432-1.429,3.385c-0.953,0.953-2.081,1.429-3.385,1.429  c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.429-2.081-1.429-3.385v-19.254c0-7.973,2.821-14.779,8.461-20.42  c5.641-5.641,12.448-8.461,20.42-8.461c7.973,0,14.779,2.82,20.42,8.461C922.062,842.712,924.881,849.519,924.881,857.492z">
-                                                </path>
-                                              </svg></span>
-                                          </span>
-                                        </a>
-                                      </div>
-                                      <div class="astra-shop-summary-wrap">
-                                        <div class="star-rating">
-                                          <span style="width: 0%">Rated
-                                            <strong class="rating">0</strong>
-                                            out of 5</span>
-                                        </div>
-                                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product/product-name-10/"
-                                          class="ast-loop-product__link">
-                                          <h2 class="woocommerce-loop-product__title">
-                                            Product Name 11
-                                          </h2>
-                                        </a>
-                                        <span class="price"><del aria-hidden="true"><span
-                                              class="woocommerce-Price-amount amount"><bdi><span
-                                                  class="woocommerce-Price-currencySymbol">$</span>75.00</bdi></span></del>
-                                          <ins><span class="woocommerce-Price-amount amount"><bdi><span
-                                                  class="woocommerce-Price-currencySymbol">$</span>59.00</bdi></span></ins></span>
-                                      </div>
-                                    </li>
-                                    <li
-                                      class="ast-article-single desktop-align-left tablet-align-left mobile-align-left product type-product post-352 status-publish last instock product_cat-skin-care has-post-thumbnail sale shipping-taxable purchasable product-type-simple">
-                                      <div class="astra-shop-thumbnail-wrap">
-                                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product/product-name-11/"
-                                          class="woocommerce-LoopProduct-link woocommerce-loop-product__link"><img
-                                            loading="lazy" decoding="async" width="300" height="366"
-                                            src="{% static "index/product-10-a-300x366.jpg" %}"
-                                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""
-                                            srcset="
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-10-a-300x366.jpg  300w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-10-a-246x300.jpg  246w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-10-a-840x1024.jpg 840w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-10-a-768x936.jpg  768w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-10-a-600x731.jpg  600w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-10-a-400x488.jpg  400w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-10-a.jpg          960w
-                                              " sizes="(max-width: 300px) 100vw, 300px" /></a><span
-                                          class="ast-on-card-button ast-onsale-card"
-                                          data-notification="default">Sale!</span><a
-                                          href="https://websitedemos.net/be-bold-beauty-store-04/?add-to-cart=352"
-                                          data-quantity="1"
-                                          class="ast-on-card-button ast-select-options-trigger product_type_simple add_to_cart_button ajax_add_to_cart"
-                                          data-product_id="352" data-product_sku=""
-                                          aria-label="Add to cart: “Product Name 12”" rel="nofollow">
-                                          <span class="ast-card-action-tooltip">
-                                            Add to cart
-                                          </span>
-                                          <span class="ahfb-svg-iconset">
-                                            <span class="ast-icon icon-bag"><svg xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                                                id="ast-bag-icon-svg" x="0px" y="0px" width="100" height="100"
-                                                viewBox="826 826 140 140" enable-background="new 826 826 140 140"
-                                                xml:space="preserve">
-                                                <path
-                                                  d="M960.758,934.509l2.632,23.541c0.15,1.403-0.25,2.657-1.203,3.761c-0.953,1.053-2.156,1.579-3.61,1.579H833.424  c-1.454,0-2.657-0.526-3.61-1.579c-0.952-1.104-1.354-2.357-1.203-3.761l2.632-23.541H960.758z M953.763,871.405l6.468,58.29H831.77  l6.468-58.29c0.15-1.203,0.677-2.218,1.58-3.045c0.903-0.827,1.981-1.241,3.234-1.241h19.254v9.627c0,2.658,0.94,4.927,2.82,6.807  s4.149,2.82,6.807,2.82c2.658,0,4.926-0.94,6.807-2.82s2.821-4.149,2.821-6.807v-9.627h28.882v9.627  c0,2.658,0.939,4.927,2.819,6.807c1.881,1.88,4.149,2.82,6.807,2.82s4.927-0.94,6.808-2.82c1.879-1.88,2.82-4.149,2.82-6.807v-9.627  h19.253c1.255,0,2.332,0.414,3.235,1.241C953.086,869.187,953.612,870.202,953.763,871.405z M924.881,857.492v19.254  c0,1.304-0.476,2.432-1.429,3.385s-2.08,1.429-3.385,1.429c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.43-2.081-1.43-3.385  v-19.254c0-5.315-1.881-9.853-5.641-13.613c-3.76-3.761-8.298-5.641-13.613-5.641s-9.853,1.88-13.613,5.641  c-3.761,3.76-5.641,8.298-5.641,13.613v19.254c0,1.304-0.476,2.432-1.429,3.385c-0.953,0.953-2.081,1.429-3.385,1.429  c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.429-2.081-1.429-3.385v-19.254c0-7.973,2.821-14.779,8.461-20.42  c5.641-5.641,12.448-8.461,20.42-8.461c7.973,0,14.779,2.82,20.42,8.461C922.062,842.712,924.881,849.519,924.881,857.492z">
-                                                </path>
-                                              </svg></span>
-                                          </span>
-                                        </a>
-                                      </div>
-                                      <div class="astra-shop-summary-wrap">
-                                        <div class="star-rating">
-                                          <span style="width: 0%">Rated
-                                            <strong class="rating">0</strong>
-                                            out of 5</span>
-                                        </div>
-                                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product/product-name-11/"
-                                          class="ast-loop-product__link">
-                                          <h2 class="woocommerce-loop-product__title">
-                                            Product Name 12
-                                          </h2>
-                                        </a>
-                                        <span class="price"><del aria-hidden="true"><span
-                                              class="woocommerce-Price-amount amount"><bdi><span
-                                                  class="woocommerce-Price-currencySymbol">$</span>75.00</bdi></span></del>
-                                          <ins><span class="woocommerce-Price-amount amount"><bdi><span
-                                                  class="woocommerce-Price-currencySymbol">$</span>59.00</bdi></span></ins></span>
-                                      </div>
-                                    </li>
+                                    {% endfor %}
+                    
                                   </ul>
                                 </div>
                               </div>
@@ -8950,242 +8812,39 @@
                               <div class="elementor-shortcode">
                                 <div class="woocommerce columns-4">
                                   <ul class="products columns-4">
+
+                                    {% for item in best_selling %}
                                     <li
-                                      class="ast-article-single desktop-align-left tablet-align-left mobile-align-left product type-product post-350 status-publish first instock product_cat-hair-care product_cat-skin-care has-post-thumbnail sale shipping-taxable purchasable product-type-simple">
+                                      class="ast-grid-common-col ast-full-width ast-article-post desktop-align-left tablet-align-left mobile-align-left product type-product post-101 status-publish first instock product_cat-hair-care has-post-thumbnail sale shipping-taxable purchasable product-type-simple">
                                       <div class="astra-shop-thumbnail-wrap">
-                                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product/product-name-9/"
+                                        <a href= {% url 'item' item.id %} 
                                           class="woocommerce-LoopProduct-link woocommerce-loop-product__link"><img
-                                            decoding="async" width="300" height="366"
-                                            src="{% static "index/product-14-a-300x366.jpg" %}"
-                                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""
-                                            srcset="
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-14-a-300x366.jpg  300w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-14-a-246x300.jpg  246w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-14-a-840x1024.jpg 840w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-14-a-768x936.jpg  768w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-14-a-600x731.jpg  600w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-14-a-400x488.jpg  400w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-14-a.jpg          960w
-                                              " sizes="(max-width: 300px) 100vw, 300px" /></a><span
-                                          class="ast-on-card-button ast-onsale-card"
-                                          data-notification="default">Sale!</span><a
-                                          href="https://websitedemos.net/be-bold-beauty-store-04/?add-to-cart=350"
-                                          data-quantity="1"
-                                          class="ast-on-card-button ast-select-options-trigger product_type_simple add_to_cart_button ajax_add_to_cart"
-                                          data-product_id="350" data-product_sku=""
-                                          aria-label="Add to cart: “Product Name 10”" rel="nofollow">
-                                          <span class="ast-card-action-tooltip">
-                                            Add to cart
-                                          </span>
-                                          <span class="ahfb-svg-iconset">
-                                            <span class="ast-icon icon-bag"><svg xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                                                id="ast-bag-icon-svg" x="0px" y="0px" width="100" height="100"
-                                                viewBox="826 826 140 140" enable-background="new 826 826 140 140"
-                                                xml:space="preserve">
-                                                <path
-                                                  d="M960.758,934.509l2.632,23.541c0.15,1.403-0.25,2.657-1.203,3.761c-0.953,1.053-2.156,1.579-3.61,1.579H833.424  c-1.454,0-2.657-0.526-3.61-1.579c-0.952-1.104-1.354-2.357-1.203-3.761l2.632-23.541H960.758z M953.763,871.405l6.468,58.29H831.77  l6.468-58.29c0.15-1.203,0.677-2.218,1.58-3.045c0.903-0.827,1.981-1.241,3.234-1.241h19.254v9.627c0,2.658,0.94,4.927,2.82,6.807  s4.149,2.82,6.807,2.82c2.658,0,4.926-0.94,6.807-2.82s2.821-4.149,2.821-6.807v-9.627h28.882v9.627  c0,2.658,0.939,4.927,2.819,6.807c1.881,1.88,4.149,2.82,6.807,2.82s4.927-0.94,6.808-2.82c1.879-1.88,2.82-4.149,2.82-6.807v-9.627  h19.253c1.255,0,2.332,0.414,3.235,1.241C953.086,869.187,953.612,870.202,953.763,871.405z M924.881,857.492v19.254  c0,1.304-0.476,2.432-1.429,3.385s-2.08,1.429-3.385,1.429c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.43-2.081-1.43-3.385  v-19.254c0-5.315-1.881-9.853-5.641-13.613c-3.76-3.761-8.298-5.641-13.613-5.641s-9.853,1.88-13.613,5.641  c-3.761,3.76-5.641,8.298-5.641,13.613v19.254c0,1.304-0.476,2.432-1.429,3.385c-0.953,0.953-2.081,1.429-3.385,1.429  c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.429-2.081-1.429-3.385v-19.254c0-7.973,2.821-14.779,8.461-20.42  c5.641-5.641,12.448-8.461,20.42-8.461c7.973,0,14.779,2.82,20.42,8.461C922.062,842.712,924.881,849.519,924.881,857.492z">
-                                                </path>
-                                              </svg></span>
-                                          </span>
-                                        </a>
+                                            width="300" height="366" src="{{ item.image.url }}"
+                                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                                            alt="" decoding="async"
+                                            srcset="{{ item.image.url }}"
+                                            sizes="(max-width: 300px) 100vw, 300px"></a><span
+                                          class="ast-on-card-button ast-onsale-card" data-notification="default">{{ item.discounted }}% discount</span>
                                       </div>
                                       <div class="astra-shop-summary-wrap">
-                                        <div class="star-rating">
-                                          <span style="width: 0%">Rated
-                                            <strong class="rating">0</strong>
-                                            out of 5</span>
-                                        </div>
-                                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product/product-name-9/"
+                                        <a href="{% url 'item' item.id %}" class="btn-sm btn-primary ">Add to Cart</a>
+                                        <a href=""
                                           class="ast-loop-product__link">
-                                          <h2 class="woocommerce-loop-product__title">
-                                            Product Name 10
-                                          </h2>
+                                          <h2 class="woocommerce-loop-product__title">{{ item.title }}</h2>
                                         </a>
                                         <span class="price"><del aria-hidden="true"><span
                                               class="woocommerce-Price-amount amount"><bdi><span
-                                                  class="woocommerce-Price-currencySymbol">$</span>75.00</bdi></span></del>
+                                                  class="woocommerce-Price-currencySymbol"></span>
+                                                  {% if item.discount_price %}
+                                                  ${{ item.main_price|floatformat:"2g" }}
+                                                  {% endif %}
+                                                  </bdi></span></del>
                                           <ins><span class="woocommerce-Price-amount amount"><bdi><span
-                                                  class="woocommerce-Price-currencySymbol">$</span>59.00</bdi></span></ins></span>
+                                                  class="woocommerce-Price-currencySymbol">$</span>{{ item.price|floatformat:"2g" }}</bdi></span></ins></span>
                                       </div>
                                     </li>
-                                    <li
-                                      class="ast-article-single desktop-align-left tablet-align-left mobile-align-left product type-product post-101 status-publish instock product_cat-hair-care has-post-thumbnail sale shipping-taxable purchasable product-type-simple">
-                                      <div class="astra-shop-thumbnail-wrap">
-                                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product/product-name-1/"
-                                          class="woocommerce-LoopProduct-link woocommerce-loop-product__link"><img
-                                            fetchpriority="high" decoding="async" width="300" height="366"
-                                            src="{% static "index/product-04-a-300x366.jpg" %}"
-                                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""
-                                            srcset="
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2023/11/product-04-a-300x366.jpg  300w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2023/11/product-04-a-246x300.jpg  246w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2023/11/product-04-a-840x1024.jpg 840w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2023/11/product-04-a-768x936.jpg  768w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2023/11/product-04-a-600x731.jpg  600w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2023/11/product-04-a-400x488.jpg  400w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2023/11/product-04-a.jpg          960w
-                                              " sizes="(max-width: 300px) 100vw, 300px" /></a><span
-                                          class="ast-on-card-button ast-onsale-card"
-                                          data-notification="default">Sale!</span><a
-                                          href="https://websitedemos.net/be-bold-beauty-store-04/?add-to-cart=101"
-                                          data-quantity="1"
-                                          class="ast-on-card-button ast-select-options-trigger product_type_simple add_to_cart_button ajax_add_to_cart"
-                                          data-product_id="101" data-product_sku=""
-                                          aria-label="Add to cart: “Product Name 1”" rel="nofollow">
-                                          <span class="ast-card-action-tooltip">
-                                            Add to cart
-                                          </span>
-                                          <span class="ahfb-svg-iconset">
-                                            <span class="ast-icon icon-bag"><svg xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                                                id="ast-bag-icon-svg" x="0px" y="0px" width="100" height="100"
-                                                viewBox="826 826 140 140" enable-background="new 826 826 140 140"
-                                                xml:space="preserve">
-                                                <path
-                                                  d="M960.758,934.509l2.632,23.541c0.15,1.403-0.25,2.657-1.203,3.761c-0.953,1.053-2.156,1.579-3.61,1.579H833.424  c-1.454,0-2.657-0.526-3.61-1.579c-0.952-1.104-1.354-2.357-1.203-3.761l2.632-23.541H960.758z M953.763,871.405l6.468,58.29H831.77  l6.468-58.29c0.15-1.203,0.677-2.218,1.58-3.045c0.903-0.827,1.981-1.241,3.234-1.241h19.254v9.627c0,2.658,0.94,4.927,2.82,6.807  s4.149,2.82,6.807,2.82c2.658,0,4.926-0.94,6.807-2.82s2.821-4.149,2.821-6.807v-9.627h28.882v9.627  c0,2.658,0.939,4.927,2.819,6.807c1.881,1.88,4.149,2.82,6.807,2.82s4.927-0.94,6.808-2.82c1.879-1.88,2.82-4.149,2.82-6.807v-9.627  h19.253c1.255,0,2.332,0.414,3.235,1.241C953.086,869.187,953.612,870.202,953.763,871.405z M924.881,857.492v19.254  c0,1.304-0.476,2.432-1.429,3.385s-2.08,1.429-3.385,1.429c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.43-2.081-1.43-3.385  v-19.254c0-5.315-1.881-9.853-5.641-13.613c-3.76-3.761-8.298-5.641-13.613-5.641s-9.853,1.88-13.613,5.641  c-3.761,3.76-5.641,8.298-5.641,13.613v19.254c0,1.304-0.476,2.432-1.429,3.385c-0.953,0.953-2.081,1.429-3.385,1.429  c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.429-2.081-1.429-3.385v-19.254c0-7.973,2.821-14.779,8.461-20.42  c5.641-5.641,12.448-8.461,20.42-8.461c7.973,0,14.779,2.82,20.42,8.461C922.062,842.712,924.881,849.519,924.881,857.492z">
-                                                </path>
-                                              </svg></span>
-                                          </span>
-                                        </a>
-                                      </div>
-                                      <div class="astra-shop-summary-wrap">
-                                        <div class="star-rating">
-                                          <span style="width: 0%">Rated
-                                            <strong class="rating">0</strong>
-                                            out of 5</span>
-                                        </div>
-                                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product/product-name-1/"
-                                          class="ast-loop-product__link">
-                                          <h2 class="woocommerce-loop-product__title">
-                                            Product Name 1
-                                          </h2>
-                                        </a>
-                                        <span class="price"><del aria-hidden="true"><span
-                                              class="woocommerce-Price-amount amount"><bdi><span
-                                                  class="woocommerce-Price-currencySymbol">$</span>75.00</bdi></span></del>
-                                          <ins><span class="woocommerce-Price-amount amount"><bdi><span
-                                                  class="woocommerce-Price-currencySymbol">$</span>59.00</bdi></span></ins></span>
-                                      </div>
-                                    </li>
-                                    <li
-                                      class="ast-article-single desktop-align-left tablet-align-left mobile-align-left product type-product post-351 status-publish instock product_cat-skin-care has-post-thumbnail sale shipping-taxable purchasable product-type-simple">
-                                      <div class="astra-shop-thumbnail-wrap">
-                                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product/product-name-10/"
-                                          class="woocommerce-LoopProduct-link woocommerce-loop-product__link"><img
-                                            decoding="async" width="300" height="366"
-                                            src="{% static "index/product-09-a-300x366.jpg" %}"
-                                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""
-                                            srcset="
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-09-a-300x366.jpg  300w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-09-a-246x300.jpg  246w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-09-a-840x1024.jpg 840w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-09-a-768x936.jpg  768w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-09-a-600x731.jpg  600w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-09-a-400x488.jpg  400w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-09-a.jpg          960w
-                                              " sizes="(max-width: 300px) 100vw, 300px" /></a><span
-                                          class="ast-on-card-button ast-onsale-card"
-                                          data-notification="default">Sale!</span><a
-                                          href="https://websitedemos.net/be-bold-beauty-store-04/?add-to-cart=351"
-                                          data-quantity="1"
-                                          class="ast-on-card-button ast-select-options-trigger product_type_simple add_to_cart_button ajax_add_to_cart"
-                                          data-product_id="351" data-product_sku=""
-                                          aria-label="Add to cart: “Product Name 11”" rel="nofollow">
-                                          <span class="ast-card-action-tooltip">
-                                            Add to cart
-                                          </span>
-                                          <span class="ahfb-svg-iconset">
-                                            <span class="ast-icon icon-bag"><svg xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                                                id="ast-bag-icon-svg" x="0px" y="0px" width="100" height="100"
-                                                viewBox="826 826 140 140" enable-background="new 826 826 140 140"
-                                                xml:space="preserve">
-                                                <path
-                                                  d="M960.758,934.509l2.632,23.541c0.15,1.403-0.25,2.657-1.203,3.761c-0.953,1.053-2.156,1.579-3.61,1.579H833.424  c-1.454,0-2.657-0.526-3.61-1.579c-0.952-1.104-1.354-2.357-1.203-3.761l2.632-23.541H960.758z M953.763,871.405l6.468,58.29H831.77  l6.468-58.29c0.15-1.203,0.677-2.218,1.58-3.045c0.903-0.827,1.981-1.241,3.234-1.241h19.254v9.627c0,2.658,0.94,4.927,2.82,6.807  s4.149,2.82,6.807,2.82c2.658,0,4.926-0.94,6.807-2.82s2.821-4.149,2.821-6.807v-9.627h28.882v9.627  c0,2.658,0.939,4.927,2.819,6.807c1.881,1.88,4.149,2.82,6.807,2.82s4.927-0.94,6.808-2.82c1.879-1.88,2.82-4.149,2.82-6.807v-9.627  h19.253c1.255,0,2.332,0.414,3.235,1.241C953.086,869.187,953.612,870.202,953.763,871.405z M924.881,857.492v19.254  c0,1.304-0.476,2.432-1.429,3.385s-2.08,1.429-3.385,1.429c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.43-2.081-1.43-3.385  v-19.254c0-5.315-1.881-9.853-5.641-13.613c-3.76-3.761-8.298-5.641-13.613-5.641s-9.853,1.88-13.613,5.641  c-3.761,3.76-5.641,8.298-5.641,13.613v19.254c0,1.304-0.476,2.432-1.429,3.385c-0.953,0.953-2.081,1.429-3.385,1.429  c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.429-2.081-1.429-3.385v-19.254c0-7.973,2.821-14.779,8.461-20.42  c5.641-5.641,12.448-8.461,20.42-8.461c7.973,0,14.779,2.82,20.42,8.461C922.062,842.712,924.881,849.519,924.881,857.492z">
-                                                </path>
-                                              </svg></span>
-                                          </span>
-                                        </a>
-                                      </div>
-                                      <div class="astra-shop-summary-wrap">
-                                        <div class="star-rating">
-                                          <span style="width: 0%">Rated
-                                            <strong class="rating">0</strong>
-                                            out of 5</span>
-                                        </div>
-                                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product/product-name-10/"
-                                          class="ast-loop-product__link">
-                                          <h2 class="woocommerce-loop-product__title">
-                                            Product Name 11
-                                          </h2>
-                                        </a>
-                                        <span class="price"><del aria-hidden="true"><span
-                                              class="woocommerce-Price-amount amount"><bdi><span
-                                                  class="woocommerce-Price-currencySymbol">$</span>75.00</bdi></span></del>
-                                          <ins><span class="woocommerce-Price-amount amount"><bdi><span
-                                                  class="woocommerce-Price-currencySymbol">$</span>59.00</bdi></span></ins></span>
-                                      </div>
-                                    </li>
-                                    <li
-                                      class="ast-article-single desktop-align-left tablet-align-left mobile-align-left product type-product post-352 status-publish last instock product_cat-skin-care has-post-thumbnail sale shipping-taxable purchasable product-type-simple">
-                                      <div class="astra-shop-thumbnail-wrap">
-                                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product/product-name-11/"
-                                          class="woocommerce-LoopProduct-link woocommerce-loop-product__link"><img
-                                            loading="lazy" decoding="async" width="300" height="366"
-                                            src="{% static "index/product-10-a-300x366.jpg" %}"
-                                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""
-                                            srcset="
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-10-a-300x366.jpg  300w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-10-a-246x300.jpg  246w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-10-a-840x1024.jpg 840w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-10-a-768x936.jpg  768w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-10-a-600x731.jpg  600w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-10-a-400x488.jpg  400w,
-                                                https://websitedemos.net/be-bold-beauty-store-04/wp-content/uploads/sites/1117/2022/08/product-10-a.jpg          960w
-                                              " sizes="(max-width: 300px) 100vw, 300px" /></a><span
-                                          class="ast-on-card-button ast-onsale-card"
-                                          data-notification="default">Sale!</span><a
-                                          href="https://websitedemos.net/be-bold-beauty-store-04/?add-to-cart=352"
-                                          data-quantity="1"
-                                          class="ast-on-card-button ast-select-options-trigger product_type_simple add_to_cart_button ajax_add_to_cart"
-                                          data-product_id="352" data-product_sku=""
-                                          aria-label="Add to cart: “Product Name 12”" rel="nofollow">
-                                          <span class="ast-card-action-tooltip">
-                                            Add to cart
-                                          </span>
-                                          <span class="ahfb-svg-iconset">
-                                            <span class="ast-icon icon-bag"><svg xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                                                id="ast-bag-icon-svg" x="0px" y="0px" width="100" height="100"
-                                                viewBox="826 826 140 140" enable-background="new 826 826 140 140"
-                                                xml:space="preserve">
-                                                <path
-                                                  d="M960.758,934.509l2.632,23.541c0.15,1.403-0.25,2.657-1.203,3.761c-0.953,1.053-2.156,1.579-3.61,1.579H833.424  c-1.454,0-2.657-0.526-3.61-1.579c-0.952-1.104-1.354-2.357-1.203-3.761l2.632-23.541H960.758z M953.763,871.405l6.468,58.29H831.77  l6.468-58.29c0.15-1.203,0.677-2.218,1.58-3.045c0.903-0.827,1.981-1.241,3.234-1.241h19.254v9.627c0,2.658,0.94,4.927,2.82,6.807  s4.149,2.82,6.807,2.82c2.658,0,4.926-0.94,6.807-2.82s2.821-4.149,2.821-6.807v-9.627h28.882v9.627  c0,2.658,0.939,4.927,2.819,6.807c1.881,1.88,4.149,2.82,6.807,2.82s4.927-0.94,6.808-2.82c1.879-1.88,2.82-4.149,2.82-6.807v-9.627  h19.253c1.255,0,2.332,0.414,3.235,1.241C953.086,869.187,953.612,870.202,953.763,871.405z M924.881,857.492v19.254  c0,1.304-0.476,2.432-1.429,3.385s-2.08,1.429-3.385,1.429c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.43-2.081-1.43-3.385  v-19.254c0-5.315-1.881-9.853-5.641-13.613c-3.76-3.761-8.298-5.641-13.613-5.641s-9.853,1.88-13.613,5.641  c-3.761,3.76-5.641,8.298-5.641,13.613v19.254c0,1.304-0.476,2.432-1.429,3.385c-0.953,0.953-2.081,1.429-3.385,1.429  c-1.303,0-2.432-0.477-3.384-1.429c-0.953-0.953-1.429-2.081-1.429-3.385v-19.254c0-7.973,2.821-14.779,8.461-20.42  c5.641-5.641,12.448-8.461,20.42-8.461c7.973,0,14.779,2.82,20.42,8.461C922.062,842.712,924.881,849.519,924.881,857.492z">
-                                                </path>
-                                              </svg></span>
-                                          </span>
-                                        </a>
-                                      </div>
-                                      <div class="astra-shop-summary-wrap">
-                                        <div class="star-rating">
-                                          <span style="width: 0%">Rated
-                                            <strong class="rating">0</strong>
-                                            out of 5</span>
-                                        </div>
-                                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product/product-name-11/"
-                                          class="ast-loop-product__link">
-                                          <h2 class="woocommerce-loop-product__title">
-                                            Product Name 12
-                                          </h2>
-                                        </a>
-                                        <span class="price"><del aria-hidden="true"><span
-                                              class="woocommerce-Price-amount amount"><bdi><span
-                                                  class="woocommerce-Price-currencySymbol">$</span>75.00</bdi></span></del>
-                                          <ins><span class="woocommerce-Price-amount amount"><bdi><span
-                                                  class="woocommerce-Price-currencySymbol">$</span>59.00</bdi></span></ins></span>
-                                      </div>
-                                    </li>
+                                    {% endfor %}
+                    
                                   </ul>
                                 </div>
                               </div>
@@ -9223,8 +8882,8 @@
                                     difference!
                                   </h2>
                                   <p class="elementor-image-box-description">
-                                    Aliquam vulputate, nunc vitae suscipit
-                                    aliquet, libero arcu hendrerit sapien.
+                                    Our latest and greatest collection
+                                    specially made for our most dedicated customers.
                                   </p>
                                 </div>
                               </div>
@@ -9236,7 +8895,7 @@
                             <div class="elementor-widget-container">
                               <div class="elementor-button-wrapper">
                                 <a class="elementor-button elementor-button-link elementor-size-sm"
-                                  href="https://websitedemos.net/be-bold-beauty-store-04/#">
+                                  href="{% url 'store' %}">
                                   <span class="elementor-button-content-wrapper">
                                     <span class="elementor-button-text">Shop now</span>
                                   </span>
@@ -9261,7 +8920,7 @@
                             data-id="a3768fe" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
                               <h6 class="elementor-heading-title elementor-size-default">
-                                Jane Bami
+                                
                               </h6>
                             </div>
                           </div>
@@ -9270,8 +8929,7 @@
                             data-id="f627f43" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
                               <h2 class="elementor-heading-title elementor-size-default">
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Phasellus posuere...
+                                Testimonies from some of our long time customers
                               </h2>
                             </div>
                           </div>
@@ -9311,11 +8969,9 @@
                             data-id="91c6c30" data-element_type="widget" data-widget_type="text-editor.default">
                             <div class="elementor-widget-container">
                               <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Phasellus posuere tincidunt
-                                purus, eu consectetur eros sodales nec.
-                                Maecenas ac erat pretium, ultricies nibh quis,
-                                mattis massa.
+                                Incredible quality product from you guys, i have never received a bad product or licky product neither have you guys messed up my shipping.
+                                its been a rock solid experience for me from day one of patronising your products.
+                                keep up the good work guys, you rock.
                               </p>
                             </div>
                           </div>
@@ -9324,7 +8980,7 @@
                             data-id="3139549" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
                               <h6 class="elementor-heading-title elementor-size-default">
-                                faloye tinu
+                                faloye tinuade
                               </h6>
                             </div>
                           </div>
@@ -9358,11 +9014,8 @@
                             data-id="806af3b" data-element_type="widget" data-widget_type="text-editor.default">
                             <div class="elementor-widget-container">
                               <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Phasellus posuere tincidunt
-                                purus, eu consectetur eros sodales nec.
-                                Maecenas ac erat pretium, ultricies nibh quis,
-                                mattis massa.
+                                From my lip gloss to my heel balm, you guy have been very reliable.i do not 
+                                have to wonder about online, you have become my one stop shop for everything cusmetics
                               </p>
                             </div>
                           </div>
@@ -9371,7 +9024,7 @@
                             data-id="c89fdcc" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
                               <h6 class="elementor-heading-title elementor-size-default">
-                                James Oliver
+                                Sandra Umah
                               </h6>
                             </div>
                           </div>
@@ -9405,11 +9058,7 @@
                             data-id="12fcb96" data-element_type="widget" data-widget_type="text-editor.default">
                             <div class="elementor-widget-container">
                               <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Phasellus posuere tincidunt
-                                purus, eu consectetur eros sodales nec.
-                                Maecenas ac erat pretium, ultricies nibh quis,
-                                mattis massa.
+                                I know i can always rely on your guys, always in stock and always ready to ship out my items as fast as possible.
                               </p>
                             </div>
                           </div>
@@ -9418,7 +9067,7 @@
                             data-id="5ac7e4f" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
                               <h6 class="elementor-heading-title elementor-size-default">
-                                James Oliver
+                                James Jessica
                               </h6>
                             </div>
                           </div>
@@ -9486,7 +9135,7 @@
                                     <div class="elementor-widget-container">
                                       <div class="elementor-button-wrapper">
                                         <a class="elementor-button elementor-button-link elementor-size-sm"
-                                          href="https://websitedemos.net/be-bold-beauty-store-04/#">
+                                          href="{%url 'store'%}">
                                           <span class="elementor-button-content-wrapper">
                                             <span class="elementor-button-text">Shop now</span>
                                           </span>
@@ -9546,7 +9195,7 @@
                                     <div class="elementor-widget-container">
                                       <div class="elementor-button-wrapper">
                                         <a class="elementor-button elementor-button-link elementor-size-sm"
-                                          href="https://websitedemos.net/be-bold-beauty-store-04/#">
+                                          href="{%url 'store'%}">
                                           <span class="elementor-button-content-wrapper">
                                             <span class="elementor-button-text">Shop now</span>
                                           </span>
@@ -9610,9 +9259,7 @@
                                     <span> Fast Delivery </span>
                                   </h4>
                                   <p class="elementor-icon-box-description">
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Ut elit tellus, luctus
-                                    nec ullamcorper mattis.
+                                    We do not delay,weship out your orders as soon as payment is confirmed,fast and efficient product delivery.
                                   </p>
                                 </div>
                               </div>
@@ -9639,9 +9286,7 @@
                                     <span> Free Shipping </span>
                                   </h4>
                                   <p class="elementor-icon-box-description">
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Ut elit tellus, luctus
-                                    nec ullamcorper mattis.
+                                    Free nation wide shipping to the comfort of your home at no additional cost .
                                   </p>
                                 </div>
                               </div>
@@ -9668,9 +9313,7 @@
                                     <span> Easy Returns </span>
                                   </h4>
                                   <p class="elementor-icon-box-description">
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Ut elit tellus, luctus
-                                    nec ullamcorper mattis.
+                                    We have a flexible and easy return policy,we stand by our products.
                                   </p>
                                 </div>
                               </div>
@@ -9747,8 +9390,8 @@
                   <div class="wpforms-container inline-fields" id="wpforms-450">
                     <form id="wpforms-form-450" class="wpforms-validate wpforms-form wpforms-ajax-form"
                       data-formid="450" method="post" enctype="multipart/form-data"
-                      action="https://websitedemos.net/be-bold-beauty-store-04/"
-                      data-token="7bbe0a577fb30ebdcdaedacb5d00daa0" novalidate="novalidate">
+                      action="https://websitedemos.net/be-bold-beauty-store-04/product/product-name-1/"
+                      data-token="39fc6131ab3d27cd400d682fd871bfe4" novalidate="novalidate">
                       <noscript class="wpforms-error-noscript">Please enable JavaScript in your browser to complete
                         this form.</noscript>
                       <div class="wpforms-field-container">
@@ -9764,11 +9407,11 @@
                       <div class="wpforms-submit-container">
                         <input type="hidden" name="wpforms[id]" value="450" /><input type="hidden"
                           name="wpforms[author]" value="20" /><input type="hidden" name="wpforms[post_id]"
-                          value="32" /><button type="submit" name="wpforms[submit]" id="wpforms-submit-450"
+                          value="101" /><button type="submit" name="wpforms[submit]" id="wpforms-submit-450"
                           class="wpforms-submit" data-alt-text="Subscribing..." data-submit-text="Subscribe"
                           aria-live="assertive" value="wpforms-submit">
-                          Subscribe</button><img src="{% static "index/submit-spin.svg" %}" class="wpforms-submit-spinner"
-                          style="display: none" width="26" height="26" alt="Loading" />
+                          Subscribe</button><img loading="lazy" src="{% static "item/submit-spin.svg" %}"
+                          class="wpforms-submit-spinner" style="display: none" width="26" height="26" alt="Loading" />
                       </div>
                     </form>
                   </div>
@@ -9788,8 +9431,8 @@
                 data-section="sidebar-widgets-footer-widget-4" aria-label="Footer Widget 4">
                 <section id="block-10" class="widget widget_block widget_media_image">
                   <figure class="wp-block-image size-full">
-                    <img loading="lazy" decoding="async" width="104" height="49" src="{% static "index/logo-regular(1).png" %}"
-                      alt="" class="wp-image-17" />
+                    <img decoding="async" width="104" height="49" src="{% static "item/logo-regular(1).png" %}" alt=""
+                      class="wp-image-17" />
                   </figure>
                 </section>
               </aside>
@@ -9802,26 +9445,28 @@
                 <section id="nav_menu-3" class="widget widget_nav_menu">
                   <nav class="menu-menu-container" aria-label="Menu">
                     <ul id="menu-menu" class="menu">
-                      <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42">
-                        <a href="https://websitedemos.net/be-bold-beauty-store-04/shop/" class="menu-link">Shop All</a>
+                      <li
+                        class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-42">
+                        <a href="{% url 'store' %}" class="menu-link">Shop All</a>
                       </li>
                       <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-44">
-                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product-category/makeup/"
+                        <a href="{% url 'store' %}"
                           class="menu-link">Makeup</a>
                       </li>
                       <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-45">
-                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product-category/skin-care/"
+                        <a href="{% url 'store' %}"
                           class="menu-link">Skin Care</a>
                       </li>
-                      <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-43">
-                        <a href="https://websitedemos.net/be-bold-beauty-store-04/product-category/hair-care/"
+                      <li
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat current-product-ancestor current-menu-parent current-product-parent menu-item-43">
+                        <a href="{% url 'store' %}"
                           class="menu-link">Hair Care</a>
                       </li>
                       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-40">
-                        <a href="https://websitedemos.net/be-bold-beauty-store-04/about/" class="menu-link">About</a>
+                        <a href="{% url 'home' %}" class="menu-link">About</a>
                       </li>
                       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-39">
-                        <a href="https://websitedemos.net/be-bold-beauty-store-04/contact/"
+                        <a href="{% url 'contact' %}"
                           class="menu-link">Contact</a>
                       </li>
                     </ul>
@@ -9840,22 +9485,23 @@
                         class="ast-nav-menu ast-flex astra-footer-vertical-menu astra-footer-tablet-vertical-menu astra-footer-mobile-vertical-menu">
                         <li id="menu-item-491"
                           class="menu-item menu-item-type-custom menu-item-object-custom menu-item-491">
-                          <a href="https://websitedemos.net/be-bold-beauty-store-04/#" class="menu-link">Refund
-                            Policy</a>
+                          <a href=""
+                            class="menu-link">Refund Policy</a>
                         </li>
                         <li id="menu-item-493"
                           class="menu-item menu-item-type-custom menu-item-object-custom menu-item-493">
-                          <a href="https://websitedemos.net/be-bold-beauty-store-04/#" class="menu-link">Terms &amp;
-                            Conditions</a>
+                          <a href=""
+                            class="menu-link">Terms &amp; Conditions</a>
                         </li>
                         <li id="menu-item-490"
                           class="menu-item menu-item-type-custom menu-item-object-custom menu-item-490">
-                          <a href="https://websitedemos.net/be-bold-beauty-store-04/#" class="menu-link">FAQ</a>
+                          <a href=""
+                            class="menu-link">FAQ</a>
                         </li>
                         <li id="menu-item-492"
                           class="menu-item menu-item-type-custom menu-item-object-custom menu-item-492">
-                          <a href="https://websitedemos.net/be-bold-beauty-store-04/#" class="menu-link">Privacy
-                            Policy</a>
+                          <a href=""
+                            class="menu-link">Privacy Policy</a>
                         </li>
                       </ul>
                     </div>
@@ -9869,8 +9515,8 @@
                 <div class="ast-footer-social-1-wrap ast-footer-social-wrap">
                   <div
                     class="footer-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled">
-                    <a href="https://websitedemos.net/be-bold-beauty-store-04/" aria-label="Facebook" target="_blank"
-                      rel="noopener noreferrer" style="
+                    <a href=""
+                      aria-label="Facebook" target="_blank" rel="noopener noreferrer" style="
                           --color: #557dbc;
                           --background-color: transparent;
                         " class="ast-builder-social-element ast-inline-flex ast-facebook footer-social-item"><span
@@ -9879,7 +9525,8 @@
                           <path
                             d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z">
                           </path>
-                        </svg></span></a><a href="https://websitedemos.net/be-bold-beauty-store-04/"
+                        </svg></span></a><a
+                      href=""
                       aria-label="Twitter" target="_blank" rel="noopener noreferrer" style="
                           --color: #7acdee;
                           --background-color: transparent;
@@ -9889,7 +9536,8 @@
                           <path
                             d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z">
                           </path>
-                        </svg></span></a><a href="https://websitedemos.net/be-bold-beauty-store-04/"
+                        </svg></span></a><a
+                      href=""
                       aria-label="Instagram" target="_blank" rel="noopener noreferrer" style="
                           --color: #8a3ab9;
                           --background-color: transparent;
